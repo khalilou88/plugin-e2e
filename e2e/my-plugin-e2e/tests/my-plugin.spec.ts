@@ -39,6 +39,8 @@ describe('my-plugin e2e', () => {
       expect(() =>
         checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
       ).not.toThrow();
+
+      const result = await runNxCommandAsync(`build subdir-${plugin}`);
     }, 120000);
   });
 
@@ -57,6 +59,8 @@ describe('my-plugin e2e', () => {
       );
       const project = readJson(`libs/${plugin}/project.json`);
       expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
+
+      const result = await runNxCommandAsync(`build ${plugin}`);
     }, 120000);
   });
 });
